@@ -8,11 +8,14 @@ join autor on autor.id_autor=livro_autor.id_autor;
 
 -- 2
 select livro.titulo, editora.nome from livro
-join editora on editora.telefone=123345;
+join editora on editora.id_editora=livro.id_editora
+where editora.telefone=123345;
 
 -- 3
 select livro.titulo, autor.nome from livro
-join autor where autor.idade=35;
+join livro_autor on livro_autor.id_livro=livro.id_livro
+join autor on autor.id_autor=livro_autor.id_autor
+where autor.idade=35;
 
 -- 4
 select livro.titulo, autor.nome, editora.nome from livro
@@ -48,10 +51,14 @@ join editora on editora.id_editora=livro.id_editora
 where editora.nome='Globo';
 
 -- 9
-select max(livro.titulo) from livro;
+-- select max(valor) from livro;
+select (livro.titulo) from livro
+where valor=(select max(valor) from livro);
 
 -- 10
-select min(livro.titulo) from livro;
+-- select min(valor) from livro;
+select (livro.titulo) from livro
+where valor=(select min(valor) from livro);
 
 -- 11
 select avg(livro.valor) from livro;
